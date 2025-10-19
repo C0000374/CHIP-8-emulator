@@ -58,6 +58,7 @@ extern BYTE					C8_KeyboardBuffer[16];
 extern BOOLEAN				C8_IsWaitingForKeyboard;
 extern PBYTE				C8_VideoMemory;
 extern BYTE					C8_DestReg;
+extern BOOLEAN				C8_IsHalted;
 
 void		stdcall C8_InitializeEmulator(PCWSTR ProgramName);
 void		stdcall C8_UpdateEmulator(void);
