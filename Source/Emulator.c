@@ -51,7 +51,7 @@ void stdcall C8_InitializeEmulator(PCWSTR ProgramName) {
 		0,
 		NULL
 	);
-	if (hProgramFile == INVALID_HANDLE_VALUE) FATAL(L"Не удалось открыть программу %s", ProgramName);
+	if (hProgramFile == INVALID_HANDLE_VALUE) FATAL(L"РќРµ СѓРґР°Р»РѕСЃСЊ РѕС‚РєСЂС‹С‚СЊ РїСЂРѕРіСЂР°РјРјСѓ %s", ProgramName);
 
 	ReadFile(
 		hProgramFile,
@@ -132,7 +132,7 @@ void stdcall C8_UpdateEmulator(void) {
 			break;
 
 		default:
-			FATAL(L"Неизвестная инструкция 0x%4X", CurrentInstruction);
+			FATAL(L"РќРµРёР·РІРµСЃС‚РЅР°СЏ РёРЅСЃС‚СЂСѓРєС†РёСЏ 0x%4X", CurrentInstruction);
 		}
 		break;
 
@@ -162,7 +162,7 @@ void stdcall C8_UpdateEmulator(void) {
 		break;
 
 	case 5: // SE Vx, Vy
-		if ((CurrentInstruction & 0x000F) != 0) FATAL(L"Неизвестная инструкция 0x%4X", CurrentInstruction);
+		if ((CurrentInstruction & 0x000F) != 0) FATAL(L"РќРµРёР·РІРµСЃС‚РЅР°СЏ РёРЅСЃС‚СЂСѓРєС†РёСЏ 0x%4X", CurrentInstruction);
 
 		if (C8_V[Vx] == C8_V[Vy]) {
 			C8_PC += 2;
@@ -224,12 +224,12 @@ void stdcall C8_UpdateEmulator(void) {
 			break;
 
 		default:
-			FATAL(L"Неизвестная инструкция 0x%4X", CurrentInstruction);
+			FATAL(L"РќРµРёР·РІРµСЃС‚РЅР°СЏ РёРЅСЃС‚СЂСѓРєС†РёСЏ 0x%4X", CurrentInstruction);
 		}
 		break;
 
 	case 9: // SNE Vx, Vy
-		if ((CurrentInstruction & 0x000F) != 0) FATAL(L"Неизвестная инструкция 0x%4X", CurrentInstruction);
+		if ((CurrentInstruction & 0x000F) != 0) FATAL(L"РќРµРёР·РІРµСЃС‚РЅР°СЏ РёРЅСЃС‚СЂСѓРєС†РёСЏ 0x%4X", CurrentInstruction);
 
 		if (C8_V[Vx] != C8_V[Vy]) {
 			C8_PC += 2;
@@ -274,7 +274,7 @@ void stdcall C8_UpdateEmulator(void) {
 			break;
 
 		default:
-			FATAL(L"Неизвестная инструкция 0x%4X", CurrentInstruction);
+			FATAL(L"РќРµРёР·РІРµСЃС‚РЅР°СЏ РёРЅСЃС‚СЂСѓРєС†РёСЏ 0x%4X", CurrentInstruction);
 		}
 
 	case 0xF:
@@ -330,7 +330,7 @@ void stdcall C8_UpdateEmulator(void) {
 			break;
 
 		default:
-			FATAL(L"Неизвестная инструкция 0x%4X", CurrentInstruction);
+			FATAL(L"РќРµРёР·РІРµСЃС‚РЅР°СЏ РёРЅСЃС‚СЂСѓРєС†РёСЏ 0x%4X", CurrentInstruction);
 		}
 	}
 }

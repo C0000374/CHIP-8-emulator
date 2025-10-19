@@ -18,8 +18,8 @@ noreturn_t cdecl C8_DisplayAndLogFatalError(
 	va_start(Arguments, Format);
 	wvsprintfW(Buffer, Format, Arguments);
 
-	if (File == NULL) wsprintfW(Buffer2, L"Ошибка: %s\r\n", Buffer);
-	else wsprintfW(Buffer2, L"[%S,%S,%u]: Ошибка: %s\r\n", File, Function, Line, Buffer);
+	if (File == NULL) wsprintfW(Buffer2, L"РћС€РёР±РєР°: %s\r\n", Buffer);
+	else wsprintfW(Buffer2, L"[%S,%S,%u]: РћС€РёР±РєР°: %s\r\n", File, Function, Line, Buffer);
 
 	MessageBoxW(
 		GetFocus(),
@@ -61,7 +61,7 @@ PVOID stdcall C8_AllocateMemory(
 		Flags,
 		Size
 	);
-	if (Memory == NULL) FATAL(L"Не удалось выделить 0x%8X байт памяти", Size);
+	if (Memory == NULL) FATAL(L"РќРµ СѓРґР°Р»РѕСЃСЊ РІС‹РґРµР»РёС‚СЊ 0x%8X Р±Р°Р№С‚ РїР°РјСЏС‚Рё", Size);
 
 	return Memory;
 }

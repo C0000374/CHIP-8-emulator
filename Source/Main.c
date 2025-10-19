@@ -44,7 +44,7 @@ void stdcall C8_Main(void) {
 
 		MessageBoxW(
 			NULL,
-			L"Использование:\r\nCHIP-8.exe <имя программы>",
+			L"РСЃРїРѕР»СЊР·РѕРІР°РЅРёРµ:\r\nCHIP-8.exe <РёРјСЏ РїСЂРѕРіСЂР°РјРјС‹>",
 			L"CHIP-8 emulator",
 			MB_OK
 		);
@@ -53,13 +53,13 @@ void stdcall C8_Main(void) {
 
 	C8_InitializeEmulator(argv[1]);
 
-	if (GdiplusStartup(&C8_GDIPlusToken, &C8_GDIPlusInput, NULL) != Ok) FATAL(L"Не удалось инициализировать GDI+");
+	if (GdiplusStartup(&C8_GDIPlusToken, &C8_GDIPlusInput, NULL) != Ok) FATAL(L"РќРµ СѓРґР°Р»РѕСЃСЊ РёРЅРёС†РёР°Р»РёР·РёСЂРѕРІР°С‚СЊ GDI+");
 	C8_GDIPlusInitialized = TRUE;
 
 	C8_MainWindowClass.hInstance = GetModuleHandleW(NULL);
 	C8_MainWindowClass.hCursor = LoadCursorW(NULL, IDC_ARROW);
 	C8_MainWindowClass.hbrBackground = CreateSolidBrush(RGB(0, 0, 0));
-	if (RegisterClassExW(&C8_MainWindowClass) == 0) FATAL(L"Не удалось зарегистрировать класс окна");
+	if (RegisterClassExW(&C8_MainWindowClass) == 0) FATAL(L"РќРµ СѓРґР°Р»РѕСЃСЊ Р·Р°СЂРµРіРёСЃС‚СЂРёСЂРѕРІР°С‚СЊ РєР»Р°СЃСЃ РѕРєРЅР°");
 
 	C8_hMainWindow = CreateWindowExW(
 		0,
@@ -75,7 +75,7 @@ void stdcall C8_Main(void) {
 		C8_MainWindowClass.hInstance,
 		NULL
 	);
-	if (C8_hMainWindow == NULL) FATAL(L"Не удалось создать окно");
+	if (C8_hMainWindow == NULL) FATAL(L"РќРµ СѓРґР°Р»РѕСЃСЊ СЃРѕР·РґР°С‚СЊ РѕРєРЅРѕ");
 
 	ShowWindow(C8_hMainWindow, SW_SHOWNORMAL);
 	UpdateWindow(C8_hMainWindow);
@@ -109,7 +109,7 @@ LRESULT stdcall C8_MainWindowProcedure(
 		SetTimer(
 			hWindow,
 			1,
-			1000 / 60, // 60 Гц
+			1000 / 60, // 60 Р“С†
 			NULL
 		);
 		GdipCreateSolidFill(0xFF000000, &C8_BlackBrush);
