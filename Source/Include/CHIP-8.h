@@ -1,10 +1,10 @@
-#ifndef CHIP_8_H
-#define CHIP_8_H
-#include <Windows.h>
 //
 // Copyright (C) C0000374
 //
 
+#ifndef CHIP_8_H
+#define CHIP_8_H
+#include <Windows.h>
 #include <CGDIP.h>
 
 typedef PWSTR* PPWSTR;
