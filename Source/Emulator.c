@@ -34,6 +34,7 @@ BYTE	C8_Symbols[80] = {
 	0xF0, 0x80, 0xF0, 0x80, 0x80
 };
 BYTE	C8_DestReg;
+BOOLEAN	C8_IsHalted = FALSE;
 
 void stdcall C8_InitializeEmulator(PCWSTR ProgramName) {
 
@@ -86,6 +87,8 @@ void stdcall C8_UpdateEmulator(void) {
 	BYTE	Vy;
 	DWORD	i;
 
+	if (C8_IsHalted == TRUE) return;
+
 	if (C8_DT != 0) C8_DT--;
 	if (C8_ST != 0) {
 		C8_ST--;
@@ -132,6 +135,7 @@ void stdcall C8_UpdateEmulator(void) {
 			break;
 
 		default:
+			C8_IsHalted = TRUE;
 			FATAL(L"Неизвестная инструкция 0x%4X", CurrentInstruction);
 		}
 		break;
@@ -162,7 +166,10 @@ void stdcall C8_UpdateEmulator(void) {
 		break;
 
 	case 5: // SE Vx, Vy
-		if ((CurrentInstruction & 0x000F) != 0) FATAL(L"Неизвестная инструкция 0x%4X", CurrentInstruction);
+		if ((CurrentInstruction & 0x000F) != 0) {
+			C8_IsHalted = TRUE;
+			FATAL(L"Неизвестная инструкция 0x%4X", CurrentInstruction);
+		}
 
 		if (C8_V[Vx] == C8_V[Vy]) {
 			C8_PC += 2;
@@ -224,12 +231,16 @@ void stdcall C8_UpdateEmulator(void) {
 			break;
 
 		default:
+			C8_IsHalted = TRUE;
 			FATAL(L"Неизвестная инструкция 0x%4X", CurrentInstruction);
 		}
 		break;
 
 	case 9: // SNE Vx, Vy
-		if ((CurrentInstruction & 0x000F) != 0) FATAL(L"Неизвестная инструкция 0x%4X", CurrentInstruction);
+		if ((CurrentInstruction & 0x000F) != 0) {
+			C8_IsHalted = TRUE;
+			FATAL(L"Неизвестная инструкция 0x%4X", CurrentInstruction);
+		}
 
 		if (C8_V[Vx] != C8_V[Vy]) {
 			C8_PC += 2;
@@ -274,6 +285,7 @@ void stdcall C8_UpdateEmulator(void) {
 			break;
 
 		default:
+			C8_IsHalted = TRUE;
 			FATAL(L"Неизвестная инструкция 0x%4X", CurrentInstruction);
 		}
 
@@ -330,6 +342,7 @@ void stdcall C8_UpdateEmulator(void) {
 			break;
 
 		default:
+			C8_IsHalted = TRUE;
 			FATAL(L"Неизвестная инструкция 0x%4X", CurrentInstruction);
 		}
 	}
